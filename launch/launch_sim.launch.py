@@ -27,10 +27,24 @@ def generate_launch_description():
                         arguments=['-topic', 'robot_description',
                                   '-entity', 'das_robot'],
                         output='screen')
+    
+    diff_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner.py",
+        arguments=["diff_cont"]
+    )
+
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner.py",
+        arguments=["joint_broad"]
+    )
 
     # Запускаем
     return LaunchDescription([
         rsp,
         gazebo,
-        spawn_entity
+        spawn_entity,
+        diff_drive_spawner,
+        joint_broad_spawner
     ])

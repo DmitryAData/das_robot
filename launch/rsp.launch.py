@@ -18,7 +18,7 @@ def generate_launch_description():
     pkg_path = os.path.join(get_package_share_directory('das_robot')) # Ищем пакет
     xacro_file = os.path.join(pkg_path,'description','robot.urdf.xacro') # Указывваем на URDF файл в пакете
     # robot_description_config = xacro.process_file(xacro_file).toxml() # Помещаем обработанное с помощью xacro описание робота в файл
-    robot_description_config = Command(['xacro ', xacro_file, ' use_ros2_control:=', use_ros2_control])
+    robot_description_config = Command(['xacro ', xacro_file, ' use_ros2_control:=', use_ros2_control, ' sim_mode:=', use_sim_time])
 
     # Создаем ноду для joint_state_publisher
     params = {'robot_description': robot_description_config, 'use_sim_time': use_sim_time} # Берем параметры из переменных
